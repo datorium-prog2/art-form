@@ -15,10 +15,20 @@ const startNewPaintingValue = {
 
 function App() {
   const [newPaintingValue, setNewPaintingValue] = useState(startNewPaintingValue)
+  // mums ir vajadzīgs gleznas steits lai kads liekam jaunu gleznu tā mainās
+
 
   return (
     <div className='art'>
-      <form className="art__form">
+      <form 
+        className="art__form" 
+        onSubmit={(eventObject) => {
+          // aptur lapas pārlādi uz formas submita
+          eventObject.preventDefault()
+
+          console.log("Form Submit");
+        }}
+      >
         <h1>Art adding form</h1>
 
         <label className='art__label'>
@@ -42,6 +52,7 @@ function App() {
               // veco state objektu aizstājam ar jauno, lai pārlūka redzētu atšķirību
               setNewPaintingValue(updatedNewPaintingValue)
             }}
+            required="required"
           />
         </label>
 
@@ -51,6 +62,16 @@ function App() {
             type="text" 
             placeholder='Leonardo da Vinci...' 
             className='art__input'
+            value={newPaintingValue.author}
+            onChange={(eventObject) => {
+              const updatedNewPaintingValue = {
+                ...newPaintingValue,
+                author: eventObject.target.value
+              }
+
+              setNewPaintingValue(updatedNewPaintingValue)
+            }}
+            required="required"
            />
         </label>
 
@@ -60,6 +81,16 @@ function App() {
             type="text" 
             placeholder='https://paining.some...' 
             className='art__input'
+            value={newPaintingValue.imgSrc}
+            onChange={(eventObject) => {
+              const updatedNewPaintingValue = {
+                ...newPaintingValue,
+                imgSrc: eventObject.target.value
+              }
+
+              setNewPaintingValue(updatedNewPaintingValue)
+            }}
+            required="required"
           />
         </label>
 
