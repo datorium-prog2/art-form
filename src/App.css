@@ -1,0 +1,74 @@
+.art {
+  display: grid;
+  margin-top: 50px;
+  grid-template-columns: 400px auto;
+  align-items: flex-start;
+  width: 100%;
+  padding: 30px;
+  gap: 40px;
+}
+
+.art__form {
+  padding: 30px;
+  border: 3px solid #111;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.art__label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.art__input {
+  padding: 10px 15px;
+  width: 100%;
+  border: 1px solid rgb(167, 165, 165);
+  border-radius: 5px;
+}
+
+.art__button {
+  padding: 20px 10px;
+  background-color: rgb(237, 206, 27);
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: opacity 0.2s;
+}
+
+.art__button:hover {
+  opacity: 0.6;
+}
+
+.art__paintings {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px
+}
+
+.art__painting {
+  border: 1px solid #111;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.art__painting-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.art__painting-name {
+  font-size: 20px; 
+}
+
+.art__painting-author {
+  font-style: italic;
+}
