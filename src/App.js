@@ -110,7 +110,7 @@ function App() {
       </form>
 
       <div className="art__paintings">
-        {paintings.map((painting) => {
+        {paintings.map((painting, index) => {
 
           return (
             <div key={Math.random()} className="art__painting">
@@ -118,6 +118,13 @@ function App() {
                 src="http://cdn.onlinewebfonts.com/svg/img_129411.png" 
                 alt="delete"
                 className='art__painting-delete'
+                onClick={() => {
+                  const updatedPaintings = paintings.filter((_, i) => {
+                    return index!== i; 
+                  })
+
+                  setPaintings(updatedPaintings)
+                }}
                />
                 <img 
                 src={painting.imgSrc}
@@ -135,6 +142,8 @@ function App() {
             </div>
           )
         })}
+
+        {paintings.length === 0 && <h1>No painting, please add some :(</h1>}
       </div>
     </div>
   );
