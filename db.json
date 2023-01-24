@@ -1,21 +1,28 @@
-{ "paintings": [
-        {
-            "id": 1,
-            "name": "Mona Lisa",
-            "author": "Leonardo da Vinci",
-            "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
-        },
-        {
-            "id": 2,
-            "name": "The Starry Night",
-            "author": "Vincent van Gogh",
-            "imgSrc": "https://blog.artsper.com/wp-content/uploads/2019/04/tableau-la-nuit-etoilee-vincent-van-gogh-75-x-55-c-1.jpg"
-        },
-        {
-            "name": "The Scream",
-            "author": "Edvard Munch",
-            "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1200px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
-            "id": 3
-        }
-    ]
+{
+  "paintings": [
+    {
+      "id": 1,
+      "name": "Mona Lisa",
+      "author": "Leonardo da Vinci",
+      "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
+    },
+    {
+      "id": 2,
+      "name": "The Starry Night",
+      "author": "Vincent van Gogh",
+      "imgSrc": "https://blog.artsper.com/wp-content/uploads/2019/04/tableau-la-nuit-etoilee-vincent-van-gogh-75-x-55-c-1.jpg"
+    },
+    {
+      "name": "The Scream",
+      "author": "Edvard Munch",
+      "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1200px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
+      "id": 3
+    },
+    {
+      "name": "The Last Supper",
+      "author": "Leonardo da Vinci",
+      "imgSrc": "https://d1inegp6v2yuxm.cloudfront.net/royal-academy/image/upload/c_limit,cs_tinysrgb,dn_72,f_auto,fl_progressive.keep_iptc,w_1200/hqgcntwbeh7kyfkolkbm.jpeg",
+      "id": 4
+    }
+  ]
 }

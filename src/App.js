@@ -149,9 +149,10 @@ function App() {
                   .then((deletedPainting) => {
                     // izņemam gleznu no gleznu masīva
                     const updatedPainting = paintings.filter((currentPainting) => {
-                        return currentPainting.id !== deletedPainting.id
+                        return currentPainting.id !== painting.id
                     })
 
+                    console.log('updatedPainting', updatedPainting);
                     // saglabājam atjaunināto gleznu masīvu steitā, lai to redzētu browserī
                     setPaintings(updatedPainting)
                   })
