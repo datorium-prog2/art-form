@@ -1,22 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
-const firstPainting = {
-  name: "Mona Lisa",
-  author: "Leonardo da Vinci",
-  imgSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
-}
-
-const startNewPaintingValue = {
+// Sākuma vērtība formas inputiem
+const newPaintingStartValue = {
   name: '',
   author: '',
   imgSrc: '',
 }
 
 function App() {
-  const [newPaintingValue, setNewPaintingValue] = useState(startNewPaintingValue)
+  // Formas inputu steits, lai varētu redzēt izmaiņas mūsu pārlūkā
+  const [newPaintingValue, setNewPaintingValue] = useState(newPaintingStartValue)
   // mums ir vajadzīgs gleznas steits lai kads liekam jaunu gleznu tā mainās
-  const [paintings, setPaintings] = useState([firstPainting])
+  const [paintings, setPaintings] = useState([])
+
+  // funkcija, kas no DB paņem visus paintingus
+  const getAllPaintings = () => {
+    // ar fetch mēs prasam API pieprasījumus uz serveri
+    fetch('http://localhost:3004/paintings')
+    .then((response) => response.json())
+    .then((allPaintings) => {
+      // kad esam paintingus dabūjuši, liekam steitā lai vizuāli tos redzētu browserī
+      setPaintings(allPaintings)
+    })
+  }
+
+  useEffect(() => {
+    // šī funkcija izsauksies vienu reizi uz komponenta ielādi, kas paņem visas gleznas
+    getAllPaintings()
+  }, [])
 
   return (
     <div className='art'>
@@ -26,17 +38,29 @@ function App() {
           // aptur lapas pārlādi uz formas submita
           eventObject.preventDefault()
 
-          // vecās vērtības un pielikt klāt jauno
-          setPaintings([
-            ...paintings,
-            newPaintingValue
-          ])
+          // sakam serverim, ka gribam saglabāt jaunu paitningu
+          fetch('http://localhost:3004/paintings', { 
+            // POST - pieprasījuma veids lai izveidotu
+            method: 'POST',
+             // sakam serverim, ka sūtīsim JSON
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            // dati par mākslas darbu, jāliek JSON.stringify, jo to prasa fetch metode
+            body: JSON.stringify(newPaintingValue)
+          })
+          .then((response) => response.json())
+          .then((addedPainting) => {
+            // pie vienojam visām gleznām jauno gleznu
+            setPaintings([
+              ...paintings,
+              addedPainting
+            ])
+          })
 
-          setNewPaintingValue(startNewPaintingValue)
-
-
-
-          console.log("Form Submit", newPaintingValue);
+          // resetojam inputa vērtības uz tukšumu
+          setNewPaintingValue(newPaintingStartValue)
         }}
       >
         <h1>Art adding form</h1>
@@ -82,7 +106,7 @@ function App() {
               setNewPaintingValue(updatedNewPaintingValue)
             }}
             required="required"
-           />
+          />
         </label>
 
         <label className='art__label'>
@@ -119,13 +143,20 @@ function App() {
                 alt="delete"
                 className='art__painting-delete'
                 onClick={() => {
-                  const updatedPaintings = paintings.filter((_, i) => {
-                    return index!== i; 
-                  })
+                  // sakam serverim, ka gribam dzēs gleznu ar konkrētu ID
+                  fetch(`http://localhost:3004/paintings/${painting.id}`, {method: "DELETE"})
+                  .then((response) => response.json())
+                  .then((deletedPainting) => {
+                    // izņemam gleznu no gleznu masīva
+                    const updatedPainting = paintings.filter((currentPainting) => {
+                        return currentPainting.id !== deletedPainting.id
+                    })
 
-                  setPaintings(updatedPaintings)
+                    // saglabājam atjaunināto gleznu masīvu steitā, lai to redzētu browserī
+                    setPaintings(updatedPainting)
+                  })
                 }}
-               />
+              />
                 <img 
                 src={painting.imgSrc}
                 alt=""
@@ -142,18 +173,12 @@ function App() {
             </div>
           )
         })}
-
+        
+        {/* ja nav gleznas tad to arī parādam */}
         {paintings.length === 0 && <h1>No painting, please add some :(</h1>}
       </div>
     </div>
   );
 }
 
-// Array.map()
-
 export default App;
-
-// C - create - POST
-// R - read - GET
-// U - update - PUT
-// D - delete - DELETE
