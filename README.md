@@ -1,6 +1,8 @@
 # To run the app
 Open terminal and in the same folder where `package.json` file is located run `npm install` and when everything is installed run `npm start`, you should see that dev server is active. To accsess project enter `http://localhost:3000/` into your browser.
 
+To run server with database you need to run `npm run start-db` in your terminal
+
 
 # Getting Started with Create React App
 

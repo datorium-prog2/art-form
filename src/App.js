@@ -152,3 +152,8 @@ function App() {
 // Array.map()
 
 export default App;
+
+// C - create - POST
+// R - read - GET
+// U - update - PUT
+// D - delete - DELETE
