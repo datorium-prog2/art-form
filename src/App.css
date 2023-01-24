@@ -48,7 +48,7 @@
 .art__paintings {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px
+  gap: 15px;
 }
 
 .art__painting {
@@ -57,12 +57,29 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 10px
+  gap: 10px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.art__painting-delete {
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer; 
 }
 
 .art__painting-image {
   width: 100%;
   border-radius: 5px;
+}
+
+.art__painting-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 30px;
 }
 
 .art__painting-name {

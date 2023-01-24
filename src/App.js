@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-const painting = {
+const firstPainting = {
   name: "Mona Lisa",
   author: "Leonardo da Vinci",
   imgSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/540px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
@@ -16,7 +16,7 @@ const startNewPaintingValue = {
 function App() {
   const [newPaintingValue, setNewPaintingValue] = useState(startNewPaintingValue)
   // mums ir vajadzīgs gleznas steits lai kads liekam jaunu gleznu tā mainās
-
+  const [paintings, setPaintings] = useState([firstPainting])
 
   return (
     <div className='art'>
@@ -26,7 +26,17 @@ function App() {
           // aptur lapas pārlādi uz formas submita
           eventObject.preventDefault()
 
-          console.log("Form Submit");
+          // vecās vērtības un pielikt klāt jauno
+          setPaintings([
+            ...paintings,
+            newPaintingValue
+          ])
+
+          setNewPaintingValue(startNewPaintingValue)
+
+
+
+          console.log("Form Submit", newPaintingValue);
         }}
       >
         <h1>Art adding form</h1>
@@ -100,23 +110,36 @@ function App() {
       </form>
 
       <div className="art__paintings">
-        <div className="art__painting">
-          <img 
-           src={painting.imgSrc}
-           alt=""
-           className='art__painting-image'
-           />
-          <span className='art__painting-name'>
-            {painting.name}
-          </span>
-          <span className='art__painting-author'>
-            {painting.author}
-          </span>
-        </div>
+        {paintings.map((painting) => {
+
+          return (
+            <div key={Math.random()} className="art__painting">
+              <img 
+                src="http://cdn.onlinewebfonts.com/svg/img_129411.png" 
+                alt="delete"
+                className='art__painting-delete'
+               />
+                <img 
+                src={painting.imgSrc}
+                alt=""
+                className='art__painting-image'
+                />
+                <div className='art__painting-content'>
+                  <span className='art__painting-name'>
+                    {painting.name}
+                  </span>
+                  <span className='art__painting-author'>
+                    {painting.author}
+                  </span>
+                </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   );
 }
 
+// Array.map()
 
 export default App;
